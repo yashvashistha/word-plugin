@@ -1,0 +1,38 @@
+     {/* <div className="flex space-x-2">
+                    <Button
+                      onClick={handleAISummarize}
+                      disabled={isBridgeLoading || isStreaming}
+                      size="sm"
+                      className="bg-blue-600 hover:bg-blue-700"
+                    >
+                      {isBridgeLoading || isStreaming ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          Summarizing...
+                        </>
+                      ) : (
+                        <>
+                          <Bot className="h-4 w-4 mr-2" />
+                          Summarize
+                        </>
+                      )}
+                    </Button>
+                    <Button
+                      onClick={handleStructureValidation}
+                      disabled={isBridgeLoading || isStreaming}
+                      size="sm"
+                      className="bg-purple-600 hover:bg-purple-700"
+                    >
+                      {isBridgeLoading || isStreaming ? (
+                        <>
+                          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                          Validating...
+                        </>
+                      ) : (
+                        <>
+                          <Bot className="h-4 w-4 mr-2" />
+                          Validate Structure
+                        </>
+                      )}
+                    </Button>
+                  </div> */}

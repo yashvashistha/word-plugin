@@ -1,0 +1,629 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<OfficeApp xmlns="http://schemas.microsoft.com/office/appforoffice/1.1"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:bt="http://schemas.microsoft.com/office/officeappbasictypes/1.0"
+  xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides" xsi:type="TaskPaneApp">
+  <Id>fd4d6a28-4f7b-4356-af5a-452ec92c7e81</Id>
+  <Version>1.0.0.0</Version>
+  <ProviderName>Contoso</ProviderName>
+  <DefaultLocale>en-US</DefaultLocale>
+  <DisplayName DefaultValue="Bridge" />
+  <Description DefaultValue="Document review and compliance assistant." />
+  <IconUrl DefaultValue="https://bridge-add1.netlify.app/assets/icon-32.png" />
+  <HighResolutionIconUrl DefaultValue="https://bridge-add1.netlify.app/assets/icon-64.png" />
+  <SupportUrl DefaultValue="https://bridge-add1.netlify.app/help" />
+  <AppDomains>
+    <AppDomain>https://bridge-add1.netlify.app</AppDomain>
+  </AppDomains>
+  <Hosts>
+    <Host Name="Document" />
+  </Hosts>
+    <Permissions>ReadWriteDocument</Permissions>
+
+  <Requirements>
+    <Sets DefaultMinVersion="1.1">
+    <Set Name="WordApi" MinVersion="1.3" />
+      <Set Name="SharedRuntime" MinVersion="1.1" />
+    </Sets>  
+    
+  </Requirements>
+  <DefaultSettings>
+    <SourceLocation DefaultValue="https://bridge-add1.netlify.app/taskpane.html" />
+  </DefaultSettings>
+  <Action xsi:type="ShowTaskpane">
+  <SourceLocation DefaultValue="https://bridge-add1.netlify.app/taskpane.html"/>
+</Action>
+  <VersionOverrides xmlns="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
+    xsi:type="VersionOverridesV1_0">
+    <Hosts>
+      <Host xsi:type="Document">
+        <DesktopFormFactor>
+          <GetStarted>
+            <Title resid="GetStarted.Title" />
+            <Description resid="GetStarted.Description" />
+            <LearnMoreUrl resid="GetStarted.LearnMoreUrl" />
+          </GetStarted>
+          <FunctionFile resid="Commands.Url" />
+          <ExtensionPoint xsi:type="PrimaryCommandSurface">
+            <CustomTab id="Bridge.Tab">
+              <!-- Review & Compliance Group -->
+              <Group id="Bridge.ReviewGroup">
+                <Label resid="Bridge.ReviewGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="Bridge.SummarizeButton">
+                  <Label resid="SummarizeButton.Label" />
+                  <Supertip>
+                    <Title resid="SummarizeButton.Label" />
+                    <Description resid="SummarizeButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>summarizeDocument</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.HighlightMissingButton">
+                  <Label resid="HighlightMissingButton.Label" />
+                  <Supertip>
+                    <Title resid="HighlightMissingButton.Label" />
+                    <Description resid="HighlightMissingButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>highlightMissingClauses</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.ValidateButton">
+                  <Label resid="ValidateButton.Label" />
+                  <Supertip>
+                    <Title resid="ValidateButton.Label" />
+                    <Description resid="ValidateButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>validateClauses</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.CompareTemplateButton">
+                  <Label resid="CompareTemplateButton.Label" />
+                  <Supertip>
+                    <Title resid="CompareTemplateButton.Label" />
+                    <Description resid="CompareTemplateButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>compareWithTemplate</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.StructureValidationButton">
+                  <Label resid="StructureValidationButton.Label" />
+                  <Supertip>
+                    <Title resid="StructureValidationButton.Label" />
+                    <Description resid="StructureVal.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>validateStructure</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.TagRiskButton">
+                  <Label resid="TagRiskButton.Label" />
+                  <Supertip>
+                    <Title resid="TagRiskButton.Label" />
+                    <Description resid="TagRiskButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>tagRiskTerms</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.ReferenceTaggingButton">
+                  <Label resid="ReferenceTaggingButton.Label" />
+                  <Supertip>
+                    <Title resid="ReferenceTaggingButton.Label" />
+                    <Description resid="ReferenceTaggingButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>tagReferences</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.ComplianceScanButton">
+                  <Label resid="ComplianceScanButton.Label" />
+                  <Supertip>
+                    <Title resid="ComplianceScanButton.Label" />
+                    <Description resid="ComplianceScanButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>runComplianceScan</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.HighlightPolicyButton">
+                  <Label resid="HighlightPolicyButton.Label" />
+                  <Supertip>
+                    <Title resid="HighlightPolicyButton.Label" />
+                    <Description resid="HighlightPolicyButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>highlightPolicyGaps</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.ApplyTemplateButton">
+                  <Label resid="ApplyTemplateButton.Label" />
+                  <Supertip>
+                    <Title resid="ApplyTemplateButton.Label" />
+                    <Description resid="ApplyTemplateButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>applyInternalTemplate</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.FullReviewButton">
+                  <Label resid="FullReviewButton.Label" />
+                  <Supertip>
+                    <Title resid="FullReviewButton.Label" />
+                    <Description resid="FullReviewButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>runFullReview</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+
+              <!-- AI Assistance Group -->
+              <Group id="Bridge.AIGroup">
+                <Label resid="Bridge.AIGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.Transparent" />
+                  <bt:Image size="32" resid="Icon.Transparent" />
+                  <bt:Image size="80" resid="Icon.Transparent" />
+                </Icon>
+
+                <Control xsi:type="Button" id="Bridge.AskButton">
+                  <Label resid="AskButton.Label" />
+                  <Supertip>
+                    <Title resid="AskButton.Label" />
+                    <Description resid="AskButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Ask.Icon" />
+                    <bt:Image size="32" resid="Ask.Icon" />
+                    <bt:Image size="80" resid="Ask.Icon" />
+                  </Icon>
+                  <Action xsi:type="ShowTaskpane">
+                    <TaskpaneId>ButtonId1</TaskpaneId>
+                    <SourceLocation resid="Taskpane.Url" />
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.ExplainButton">
+                  <Label resid="ExplainButton.Label" />
+                  <Supertip>
+                    <Title resid="ExplainButton.Label" />
+                    <Description resid="ExplainButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Explain.Icon" />
+                    <bt:Image size="32" resid="Explain.Icon" />
+                    <bt:Image size="80" resid="Explain.Icon" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>explainSection</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.GetDefinitionButton">
+                  <Label resid="GetDefinitionButton.Label" />
+                  <Supertip>
+                    <Title resid="GetDefinitionButton.Label" />
+                    <Description resid="GetDefinitionButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Definition.Icon" />
+                    <bt:Image size="32" resid="Definition.Icon" />
+                    <bt:Image size="80" resid="Definition.Icon" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>getDefinition</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.RewriteButton">
+                  <Label resid="RewriteButton.Label" />
+                  <Supertip>
+                    <Title resid="RewriteButton.Label" />
+                    <Description resid="RewriteButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>rewriteForClarity</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.TranslateButton">
+                  <Label resid="TranslateButton.Label" />
+                  <Supertip>
+                    <Title resid="TranslateButton.Label" />
+                    <Description resid="TranslateButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>translateContent</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+
+              <!-- Logs & Insights Group -->
+              <Group id="Bridge.LogsGroup">
+                <Label resid="Bridge.LogsGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="Bridge.AuditButton">
+                  <Label resid="AuditButton.Label" />
+                  <Supertip>
+                    <Title resid="AuditButton.Label" />
+                    <Description resid="AuditButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Audit.Icon" />
+                    <bt:Image size="32" resid="Audit.Icon" />
+                    <bt:Image size="80" resid="Audit.Icon" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>generateAuditLog</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.TrackButton">
+                  <Label resid="TrackButton.Label" />
+                  <Supertip>
+                    <Title resid="TrackButton.Label" />
+                    <Description resid="TrackButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>trackAIActions</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.ViewHistoryButton">
+                  <Label resid="ViewHistoryButton.Label" />
+                  <Supertip>
+                    <Title resid="ViewHistoryButton.Label" />
+                    <Description resid="ViewHistoryButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>viewHistory</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.LogoutButton">
+                  <Label resid="LogoutButton.Label" />
+                  <Supertip>
+                    <Title resid="LogoutButton.Label" />
+                    <Description resid="LogoutButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>logout</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+
+              <!-- Workflow Group -->
+              <Group id="Bridge.WorkflowGroup">
+                <Label resid="Bridge.WorkflowGroup.Label" />
+                <Icon>
+                  <bt:Image size="16" resid="Icon.16x16" />
+                  <bt:Image size="32" resid="Icon.32x32" />
+                  <bt:Image size="80" resid="Icon.80x80" />
+                </Icon>
+
+                <Control xsi:type="Button" id="Bridge.PrepareButton">
+                  <Label resid="PrepareButton.Label" />
+                  <Supertip>
+                    <Title resid="PrepareButton.Label" />
+                    <Description resid="PrepareButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Prepare.Icon" />
+                    <bt:Image size="32" resid="Prepare.Icon" />
+                    <bt:Image size="80" resid="Prepare.Icon" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>prepareReviewPackage</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.SignatureButton">
+                  <Label resid="SignatureButton.Label" />
+                  <Supertip>
+                    <Title resid="SignatureButton.Label" />
+                    <Description resid="SignatureButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>sendForSignature</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.CoverLetterButton">
+                  <Label resid="CoverLetterButton.Label" />
+                  <Supertip>
+                    <Title resid="CoverLetterButton.Label" />
+                    <Description resid="CoverLetterButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>addCoverLetter</FunctionName>
+                  </Action>
+                </Control>
+
+                <Control xsi:type="Button" id="Bridge.ApprovalButton">
+                  <Label resid="ApprovalButton.Label" />
+                  <Supertip>
+                    <Title resid="ApprovalButton.Label" />
+                    <Description resid="ApprovalButton.Tooltip" />
+                  </Supertip>
+                  <Icon>
+                    <bt:Image size="16" resid="Icon.Transparent" />
+                    <bt:Image size="32" resid="Icon.Transparent" />
+                    <bt:Image size="80" resid="Icon.Transparent" />
+                  </Icon>
+                  <Action xsi:type="ExecuteFunction">
+                    <FunctionName>submitForApproval</FunctionName>
+                  </Action>
+                </Control>
+              </Group>
+
+              <Label resid="Bridge.Tab.Label" />
+            </CustomTab>
+          </ExtensionPoint>
+        </DesktopFormFactor>
+      </Host>
+    </Hosts>
+    <Resources>
+      <bt:Images>
+        <bt:Image id="Icon.16x16" DefaultValue="https://bridge-add1.netlify.app/assets/approval-icon.png" />
+        <bt:Image id="Icon.32x32" DefaultValue="https://bridge-add1.netlify.app/assets/approval-icon.png" />
+        <bt:Image id="Icon.80x80" DefaultValue="https://bridge-add1.netlify.app/assets/approval-icon.png" />
+        <!-- Review & Compliance Icons -->
+        <bt:Image id="Document.Icon"
+          DefaultValue="https://bridge-add1.netlify.app/assets/document-icon-36553.png" />
+        <bt:Image id="Highlight.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/high.png" />
+        <bt:Image id="Validate.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/5531412.png" />
+        <bt:Image id="Compare.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/compare-icon.png" />
+        <bt:Image id="Structure.Icon"
+          DefaultValue="https://bridge-add1.netlify.app/assets/project-icon-2048x2048-a35ti913.png" />
+        <bt:Image id="Tag.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/tag.png" />
+        <bt:Image id="Reference.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/120120.png" />
+        <bt:Image id="Scan.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/scan-icon.png" />
+        <bt:Image id="Policy.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/policy-icon.png" />
+        <bt:Image id="Template.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/translate-icon.png" />
+        <bt:Image id="Review.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/review-icon.png" />
+        <!-- AI Assistance Icons -->
+        <bt:Image id="Ask.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/ask.png" />
+        <bt:Image id="Explain.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/explainn.png" />
+        <bt:Image id="Definition.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/defe.png" />
+        <bt:Image id="Rewrite.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/rewrite-icon.png" />
+        <bt:Image id="Translate.Icon"
+          DefaultValue="https://bridge-add1.netlify.app/assets/translate-icon.png" />
+        <!-- Logs & Insights Icons -->
+        <bt:Image id="Audit.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/gen.png" />
+        <bt:Image id="Track.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/track-icon.png" />
+        <bt:Image id="History.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/history-icon.png" />
+        <bt:Image id="Logout.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/logout-icon.png" />
+        <bt:Image id="Icon.Transparent" DefaultValue="https://bridge-add1.netlify.app/assets/blank.png" />
+
+        <!-- Workflow Icons -->
+        <bt:Image id="Prepare.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/get2.png" />
+        <bt:Image id="Signature.Icon"
+          DefaultValue="https://bridge-add1.netlify.app/assets/signature-icon.png" />
+        <bt:Image id="Letter.Icon" DefaultValue="https://bridge-add1.netlify.app/assets/letter-icon.png" />
+      </bt:Images>
+      <bt:Urls>
+        <bt:Url id="GetStarted.LearnMoreUrl"
+          DefaultValue="https://go.microsoft.com/fwlink/?LinkId=276812" />
+        <bt:Url id="Commands.Url" DefaultValue="https://bridge-add1.netlify.app/commands.html" />
+        <bt:Url id="Taskpane.Url" DefaultValue="https://bridge-add1.netlify.app/taskpane.html" />
+      </bt:Urls>
+      <bt:ShortStrings>
+        <bt:String id="TestButton.Label" DefaultValue="Test" />
+        <bt:String id="GetStarted.Title" DefaultValue="Get started with Bridge!" />
+        <bt:String id="Bridge.Tab.Label" DefaultValue="Bridge" />
+        <bt:String id="Bridge.ReviewGroup.Label" DefaultValue="Review &amp; Compliance" />
+        <bt:String id="Bridge.AIGroup.Label" DefaultValue="AI Assistance" />
+        <bt:String id="Bridge.LogsGroup.Label" DefaultValue="Logs &amp; Insights" />
+        <bt:String id="Bridge.WorkflowGroup.Label" DefaultValue="Workflow" />
+
+        <!-- Review & Compliance Button Labels -->
+        <bt:String id="SummarizeButton.Label" DefaultValue="Summarize Document" />
+        <bt:String id="HighlightMissingButton.Label" DefaultValue="Highlight Missing Clauses" />
+        <bt:String id="ValidateButton.Label" DefaultValue="Validate Clauses" />
+        <bt:String id="CompareTemplateButton.Label" DefaultValue="Compare with Template" />
+        <bt:String id="StructureValidationButton.Label" DefaultValue="Structure Validation" />
+        <bt:String id="TagRiskButton.Label" DefaultValue="Tag Risk Terms" />
+        <bt:String id="ReferenceTaggingButton.Label" DefaultValue="Reference Tagging" />
+        <bt:String id="ComplianceScanButton.Label" DefaultValue="Run Compliance Scan" />
+        <bt:String id="HighlightPolicyButton.Label" DefaultValue="Highlight Policy Gaps" />
+        <bt:String id="ApplyTemplateButton.Label" DefaultValue="Apply Internal Template" />
+        <bt:String id="FullReviewButton.Label" DefaultValue="Run Full Review" />
+
+        <!-- AI Assistance Button Labels -->
+        <bt:String id="AskButton.Label" DefaultValue="Ask from Document (Q&amp;A)" />
+        <bt:String id="ExplainButton.Label" DefaultValue="Explain Section" />
+        <bt:String id="GetDefinitionButton.Label" DefaultValue="Get Definition" />
+        <bt:String id="RewriteButton.Label" DefaultValue="Rewrite for Clarity" />
+        <bt:String id="TranslateButton.Label" DefaultValue="Translate" />
+
+        <!-- Logs & Insights Button Labels -->
+        <bt:String id="AuditButton.Label" DefaultValue="Generate Audit Log" />
+        <bt:String id="TrackButton.Label" DefaultValue="Track AI Actions" />
+        <bt:String id="ViewHistoryButton.Label" DefaultValue="View History" />
+        <bt:String id="LogoutButton.Label" DefaultValue="Sign Out" />
+        <bt:String id="PrepareButton.Label" DefaultValue="Prepare Review Package" />
+        <bt:String id="SignatureButton.Label" DefaultValue="Send for Signature" />
+        <bt:String id="CoverLetterButton.Label" DefaultValue="Add Cover Letter" />
+        <bt:String id="ApprovalButton.Label" DefaultValue="Submit for Approval" />
+      </bt:ShortStrings>
+      <bt:LongStrings>
+        <bt:String id="GetStarted.Description"
+          DefaultValue="Your Bridge add-in loaded successfully. Go to the BRIDGE tab to access document review tools." />
+        <bt:String id="TestButton.Tooltip" DefaultValue="Click to test commands.ts" />
+        <!-- Review & Compliance Button Tooltips -->
+        <bt:String id="SummarizeButton.Tooltip"
+          DefaultValue="Generate a summary of the current document" />
+        <bt:String id="HighlightMissingButton.Tooltip"
+          DefaultValue="Highlight any missing standard clauses in the document" />
+        <bt:String id="ValidateButton.Tooltip"
+          DefaultValue="Validate clauses in the document against standard templates" />
+        <bt:String id="CompareTemplateButton.Tooltip"
+          DefaultValue="Compare this document with a standard template" />
+        <bt:String id="StructureVal.Tooltip"
+          DefaultValue="Check if document structure follows company guidelines" />
+        <bt:String id="TagRiskButton.Tooltip"
+          DefaultValue="Identify and tag high-risk terms in the document" />
+        <bt:String id="ReferenceTaggingButton.Tooltip"
+          DefaultValue="Automatically tag references in the document" />
+        <bt:String id="ComplianceScanButton.Tooltip"
+          DefaultValue="Run a comprehensive compliance scan on the document" />
+        <bt:String id="HighlightPolicyButton.Tooltip"
+          DefaultValue="Highlight areas that may not comply with company policy" />
+        <bt:String id="ApplyTemplateButton.Tooltip"
+          DefaultValue="Apply an internal template to the document" />
+        <bt:String id="FullReviewButton.Tooltip" DefaultValue="Run a full review of the document" />
+
+        <!-- AI Assistance Button Tooltips -->
+        <bt:String id="AskButton.Tooltip" DefaultValue="Ask questions about the document content" />
+        <bt:String id="ExplainButton.Tooltip"
+          DefaultValue="Get an explanation of the selected section" />
+        <bt:String id="GetDefinitionButton.Tooltip"
+          DefaultValue="Get definition of selected term or concept" />
+        <bt:String id="RewriteButton.Tooltip"
+          DefaultValue="Rewrite selected text for clarity and precision" />
+        <bt:String id="TranslateButton.Tooltip"
+          DefaultValue="Translate selected text to another language" />
+
+        <!-- Logs & Insights Button Tooltips -->
+        <bt:String id="AuditButton.Tooltip"
+          DefaultValue="Generate an audit log of all changes made to the document" />
+        <bt:String id="TrackButton.Tooltip"
+          DefaultValue="Track AI-assisted actions taken on this document" />
+        <bt:String id="ViewHistoryButton.Tooltip"
+          DefaultValue="View the revision history of this document" />
+        <bt:String id="LogoutButton.Tooltip" DefaultValue="Sign out from your Microsoft account" />
+
+        <!-- Workflow Button Tooltips -->
+        <bt:String id="PrepareButton.Tooltip"
+          DefaultValue="Prepare a review package for this document" />
+        <bt:String id="SignatureButton.Tooltip" DefaultValue="Send this document for signature" />
+        <bt:String id="CoverLetterButton.Tooltip" DefaultValue="Add a cover letter to the document" />
+        <bt:String id="ApprovalButton.Tooltip" DefaultValue="Submit this document for approval" />
+      </bt:LongStrings>
+    </Resources>
+    <WebApplicationInfo>
+      <Id>fd4d6a28-4f7b-4356-af5a-452ec92c7e81</Id>
+      <Resource>api://bridge-add1.netlify.app/fd4d6a28-4f7b-4356-af5a-452ec92c7e81</Resource>
+      <Scopes>
+        <Scope>profile</Scope>
+        <Scope>openid</Scope>
+        <Scope>User.Read</Scope>
+      </Scopes>
+    </WebApplicationInfo>
+  </VersionOverrides>
+</OfficeApp>
